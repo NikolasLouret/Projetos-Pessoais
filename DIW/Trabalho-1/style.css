@@ -1,0 +1,1358 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0px;
+    margin: 0px;
+}
+
+header{
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0px;
+    padding: 0px;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgb(236, 233, 233) !important;
+}
+
+.bold{
+    font-family: Montserrat SemiBold !important;
+}
+
+div.modal-content h5{
+    font-family: Montserrat SemiBold;
+    font-size: 20px;
+}
+
+div.modal-body p{
+    text-align: justify;
+    margin-top: 20px;
+    font-family: Montserrat;
+    font-size: 15px;
+}
+div.modal-body .creditos{
+    font-size: 12px;
+}
+
+div.modal-body a{
+    color: rgb(81, 123, 202);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/*Menu Desktop*/
+@media  screen and (min-width:1200px){
+    .header{
+        margin: 0px auto !important;
+    }
+
+    .logo-header{
+        display: none;
+    }
+
+    .menu_header{
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+        top: 14px;
+        padding-left: 80px !important;
+    }
+
+    .menu_header > li a{
+        display: inline-block;
+        padding: 5px 12px;
+        color: black !important;
+        font-family: Montserrat;
+        font-size: 15px;
+    }
+
+    .menu_header > li a:hover{
+        color: rgb(114, 113, 113) !important;
+    }
+
+    #menu-mobile-linha{
+        display: none;
+    }
+
+    .barras_menu{
+        margin-top: 4px;
+        color: black !important;
+    }
+
+    .pesquisar {
+        padding-right: 80px !important; 
+    }
+
+    .pesquisar form{
+        display: inline-block;
+        position: absolute;
+        top: 7px;
+        right: 0px;
+    }
+
+    #search{
+        padding-left: 10px;
+        width: 200px;
+    }
+
+    .pesquisar form input:focus{
+        border: none;
+        background: none;
+        box-shadow: none;
+    }
+
+    .pesquisar form input:hover{
+        background: none;
+    }
+
+    .pesquisar form{
+        height: 30px;
+        width: 250px;
+        border: 1px solid rgb(51, 51, 51);
+        border-radius: 4px;
+    }
+
+    .pesquisar form input, .pesquisar form button{
+        font-size: 12px;
+        font-family: Montserrat;
+        color: rgb(51, 51, 51) !important;
+        border-radius: 4px;
+        border: none;
+        background: none;
+    }
+
+    .pesquisar form button{
+        color: rgb(51, 51, 51) !important;
+    }
+
+    .pesquisar form button:hover{
+        color: rgb(121, 121, 121) !important;
+    }
+
+    .header{
+        margin-bottom: 40px;
+    }
+
+    #menuToggle, #searchToggle, .search_header-icon i, .menu_header-icon i{
+        display:none;
+    }
+}
+/*Fim Menu Desktop*/
+
+/*Menu Tablet*/
+@media  screen and (min-width:1000px) and (max-width:1199px){
+    header{
+        margin: 0px auto !important;
+    }
+
+    .logo-header{
+        display: none;
+    }
+
+    .menu_header{
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+        top: 14px;
+        padding-left: 40px !important;
+    }
+
+    .menu_header > li a{
+        display: inline-block;
+        padding: 5px 12px;
+        color: black !important;
+        font-family: Montserrat;
+        font-size: 15px;
+    }
+
+    .menu_header > li a:hover{
+        color: rgb(114, 113, 113) !important;
+    }
+
+    #menu-mobile-linha{
+        display: none;
+    }
+
+    .barras_menu{
+        margin-top: 4px;
+        color: black !important;
+    }
+
+    .pesquisar {
+        padding-right: 40px !important; 
+    }
+
+    #search{
+        padding-left: 10px;
+        width: 100px;
+    }
+
+    .pesquisar form input:focus{
+        border: none;
+        background: none;
+        box-shadow: none;
+    }
+
+    .pesquisar form input:hover{
+        background: none;
+    }
+
+    .pesquisar form{
+        display: inline-block;
+        position: absolute;
+        top: 7px;
+        right: 0px;
+        height: 30px;
+        width: 150px;
+        border: 1px solid rgb(51, 51, 51);
+        border-radius: 4px;
+    }
+
+    .pesquisar form input, .pesquisar form button{
+        font-size: 12px;
+        font-family: Montserrat;
+        color: rgb(51, 51, 51) !important;
+        border-radius: 4px;
+        border: none;
+        background: none;
+    }
+
+    .pesquisar form button{
+        color: rgb(51, 51, 51) !important;
+    }
+
+    .pesquisar form button:hover{
+        color: rgb(121, 121, 121) !important;
+    }
+
+    .header{
+        margin-bottom: 40px;
+    }
+
+    #menuToggle, #searchToggle, .search_header-icon i, .menu_header-icon i{
+        display:none;
+    }
+}
+/*Fim Menu Tablet*/
+
+/*Menu Mobile*/
+@media screen and (max-width:999px){
+    header{
+        position: fixed;
+        display: inline-block;
+        margin: 0px;
+        padding: 0px;
+        height: 50px;
+        width: 100%;
+        background-color: rgb(236, 233, 233);
+    }
+
+    .header_linha{
+        position: relative;
+    }
+
+    #menuToggle, #searchToggle{
+        display: none;
+    }
+
+    .barras_menu{
+        display: none;
+    }
+
+    .logo-header{
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        left: 0px;
+        padding-left: 20px;
+    }
+    
+    .logo-header img{
+        width: 30px;
+    }
+
+    /*Menu - Mobile*/
+        .menu_header{
+            display: block;
+            position: absolute;
+            width: 60%;
+            top: 49px;
+            right: 0px;
+            height: 0px;
+            transition: .3s;
+            z-index: 1000;
+            background-color: rgb(236, 233, 233);
+            visibility: hidden;
+            overflow-y: hidden;
+        }
+
+        .menu_header a{
+            margin: 0px;
+        }
+
+        .menu_header li a{
+            margin-top: 20px;
+            color: black !important;
+            font-family: Montserrat;
+            font-size: 15px;
+        }    
+
+        #menu-mobile-linha{
+            margin-top: -1px;
+            margin-bottom: -1px;
+            width: 100%;
+        }
+
+        .menu_header-icon{
+            position: absolute;
+            top: 15px;
+            right: 0px;
+            padding-right: 20px;
+            z-index: 1001;
+        }
+
+        /*Menu Toggle acionado*/
+        #menuToggle:checked ~ .menu_header{
+            visibility: visible;
+            height: calc(100vh - 50px);
+            overflow-y: auto;
+        }
+
+        /*Menu Toggle não acionado*/
+        #menuToggle:not(checked) ~ .menu_header{
+            display: block;
+        }
+    /*Fim Menu - Mobile*/
+
+    /*Barra de pesquisa - Mobile*/
+        #search{
+            padding-left: 7px;
+            margin-top: -4px;
+            font-size: 15px;
+            font-family: Montserrat;
+        }
+
+        .pesquisar form input:focus{
+            border: none;
+            background: none;
+            box-shadow: none;
+        }
+
+        div.pesquisar form{
+            position: absolute;
+            display: inline-block;
+            top: 8px;
+            right: 0px;
+            margin-right: 30px;
+            height: 25px;
+            width: 130px;
+            border: 1px solid rgb(51, 51, 51);
+            border-radius: 4px;
+        }
+
+        .pesquisar form input, .pesquisar form button{
+            font-size: 10px;
+            font-family: Montserrat;
+            color: rgb(51, 51, 51) !important;
+            border-radius: 4px;
+            border: none;
+            background: none;
+            padding: 5px 5px;
+        }
+
+        .pesquisar form button{
+            color: rgb(51, 51, 51) !important;
+            margin-top: -4px;
+        }
+    /*Fim Barra de pesquisa - Mobile*/
+}
+/*Fim Menu Mobile*/
+
+/*------------------------------------------------------------------*/
+
+/*Perfil*/
+
+/*Perfil Mobile*/
+@media screen and (max-width: 750px){
+    main .perfil{
+        margin: 80px 0px 20px;
+        padding: 0px 20px;
+    }
+    
+    .perfil img{
+        width: 100%;
+    }
+    
+    .perfil .texto_perfil h4{
+        font-size: 30px;
+        font-family: Montserrat SemiBold;
+        text-align: center;
+    }
+    
+    .perfil .texto_perfil{
+        margin-top: 25px;
+        text-align: justify;
+        font-family: Montserrat;
+        font-size: 17px;
+    }
+    
+    .perfil .texto_perfil h4{
+        margin-bottom: 10px;
+    }
+    
+    .perfil .texto_perfil .bold{
+        font-family: Montserrat SemiBold;
+    }
+
+    div.icones_redes{
+        display: inline-block;
+        text-align: center;
+    }
+
+    div.redes h4{
+        text-align: center;
+        font-size: 20px;
+        font-family: Montserrat SemiBold;
+        margin: 10px 0px;
+    }
+
+    div.redes i{
+        width: 65px;
+        color: black;
+    }
+}
+/*Fmi Perfil Mobile*/
+
+/*Perfil Tablet*/
+@media  screen and (min-width:751px) and (max-width:1199px){
+    main .perfil{
+        margin: 90px 0px;
+        padding: 0px 60px;
+    }
+
+    .perfil img{
+        width: 130%;
+    }
+
+    .perfil .texto_perfil h4{
+        font-size: 40px;
+        font-family: Montserrat SemiBold;
+    }
+
+    .perfil .texto_perfil{
+        font-family: Montserrat;
+        font-size: 16px;
+        margin-left: 10%;
+    }
+
+    .perfil .texto_perfil h4{
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .perfil .texto_perfil .bold{
+        font-family: Montserrat SemiBold;
+    }
+
+    .perfil .redes{
+        margin-left: 10%;
+        margin-top: 7%;
+    }
+
+    .perfil .redes h4{
+        font-size: 20px;
+        font-family: Montserrat SemiBold;
+    }
+
+    .perfil .redes i{
+        width: 45px;
+        color: black;
+    }
+}
+/*Fim Perfil Tablet*/
+
+/*Perfil Desktop*/
+@media  screen and (min-width:1200px){
+    main .perfil{
+        margin: 90px 0px;
+        padding: 0px 240px;
+    }
+
+    .perfil img{
+        width: 110%;
+    }
+
+    .perfil .texto_perfil h4{
+        font-size: 40px;
+        font-family: Montserrat SemiBold;
+    }
+
+    .perfil .texto_perfil{
+        font-family: Montserrat;
+        font-size: 16px;
+        margin-left: 40px;
+    }
+
+    .perfil .texto_perfil h4{
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .perfil .texto_perfil .bold{
+        font-family: Montserrat SemiBold;
+    }
+
+    .perfil .redes{
+        margin-left: 40px;
+        margin-top: 5%;
+    }
+
+    .perfil .redes h4{
+        font-size: 20px;
+        font-family: Montserrat SemiBold;
+    }
+
+    .perfil .redes i{
+        width: 45px;
+        color: black;
+    }
+}
+/*Fim Perfil Desktop*/
+
+/*------------------------------------------------------------------*/
+
+/*Projetos*/
+
+/*Projeto Mobile*/
+@media  screen and (max-width:750px){
+    .drop_titulo, .card_projetos{
+        margin: 0px auto !important;
+    }
+
+    .titulo_projetos{
+        font-size: 30px;
+        font-family: Montserrat SemiBold;
+        color: black;
+        text-decoration: none;
+        margin-bottom: 25px;
+    }
+
+    .titulo_projetos:hover{
+        color: black;
+    }
+
+    .dropdown button{
+        font-size: 12px;
+        font-family: Montserrat;
+        color: rgb(51, 51, 51) !important;
+        border: 1px solid rgb(51, 51, 51);
+        border-radius: 4px;
+        text-align: left;
+    }
+
+    .dropdown .btn, .dropdown button i{
+        margin-top: 4px;
+        padding-left: 10px;
+        float: right;
+    }
+
+    .dropdown .btn:focus{
+        background: none;
+        box-shadow: none;
+    }
+
+    .cards_projetos{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card{
+        border:none !important;
+    }
+
+    .card1, .card2, .card3, .card4{
+        margin: 20px auto !important;
+        width: 90% !important;
+    }
+
+    .cards_projetos hr{
+        margin: 0px auto;
+        width: 80% !important;
+    }
+
+    .descricao{
+        text-decoration: none;
+        margin-top: 7px;
+        font-family: Montserrat SemiBold; 
+        font-size: 20px; 
+        color: black !important; 
+    }
+
+    button.saber-mais{
+        font-size: 15px;
+        float: right !important;
+    }
+
+    div.descrição button.btn{
+        display: inline-block;
+    }
+
+    .botao_mais .carregarMais{
+        font-size: 15px;
+        font-family: Montserrat SemiBold;
+        width: 100%;
+        margin:5px auto 35px;
+        color: white;
+        background-color: rgb(65, 64, 64);
+    }
+
+    .botao_mais .carregarMais:focus{
+        color: white;
+        box-shadow: none;
+    }
+
+    .botao_mais .carregarMais{
+        display: inline-block;
+    }
+
+    .projetos .cards_projetos > img{
+        width: 50%;
+    }
+}
+/*Fim Projeto Mobile*/
+
+/*Projeto Tablet*/
+@media  screen and (min-width:751px) and (max-width:1199px){
+    hr.linha_mobile{
+        display: none;
+    }
+
+    main .projetos{
+        padding: 0px 60px;
+        margin-top: 35px;
+    }
+
+    .projetos .drop_titulo .titulo_projetos{
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+        margin-bottom: 25px;
+        color: black;
+        text-decoration: none;
+    }
+
+    .drop_titulo{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .dropdown button{
+        font-size: 12px;
+        font-family: Montserrat;
+        color: rgb(51, 51, 51) !important;
+        width: 250px;
+        border: 1px solid rgb(51, 51, 51);
+        border-radius: 4px;
+        text-align: left;
+    }
+
+    .dropdown .btn, .dropdown button i{
+        margin-top: 4px;
+        float: right;
+    }
+
+    .dropdown .btn:focus{
+        background: none;
+        box-shadow: none;
+    }
+
+    .dropdown .dropdown-menu{
+        padding: 5px 0px;
+        margin: 0px;
+        width: 250px;
+        float: right;
+    }
+
+    .card{
+        border: none !important;
+    }
+
+    .card1, .card2, .card4, .card4{
+        margin-bottom: 30px;
+    }
+
+    .descricao a{
+        text-decoration: none;
+        margin-top: 12px;
+        float: left;
+        font-family: Montserrat SemiBold; 
+        font-size: 16px; 
+        color: black !important; 
+    }
+
+    .descricao a:hover{  
+        color: rgb(80, 80, 80) !important; 
+    }
+
+    button.saber-mais{
+        margin-top: 15px;
+        font-family: Montserrat SemiBold;
+        font-size: 12px;
+        float: right !important;
+    }
+
+    button.saber-mais:focus{
+        box-shadow: none;
+    }
+
+    .cards_projetos hr{
+        display: none;
+    }
+
+    .botao_mais .carregarMais{
+        float: right !important;
+        margin-top: 30px;
+        margin-bottom: 35px;
+        font-size: 15px;
+        font-family: Montserrat SemiBold;
+        color: white;
+        background-color: rgb(65, 64, 64);
+    }
+
+    .botao_mais .carregarMais:hover{
+        color: white;
+        background-color: rgb(97, 96, 96);
+    }
+
+    .projetos .cards_projetos > img{
+        width: 50%;
+    }
+
+    .card-title{
+        padding: 0px;
+        margin: 0px;
+        color: black;
+        font-family: Montserrat SemiBold;
+        font-size: 15px;
+    }
+}
+/*Fim Projeto Tablet*/
+
+/*Projeto Desktop*/
+@media  screen and (min-width:1200px){
+    hr.linha_mobile{
+        display: none;
+    }
+
+    main .projetos{
+        padding: 0px 240px;
+        margin-top: 35px;
+    }
+
+    .projetos .drop_titulo .titulo_projetos{
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+        margin-bottom: 25px;
+        color: black;
+        text-decoration: none;
+    }
+
+    .drop_titulo{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .dropdown button{
+        font-size: 12px;
+        font-family: Montserrat;
+        color: rgb(51, 51, 51) !important;
+        width: 250px;
+        border: 1px solid rgb(51, 51, 51);
+        border-radius: 4px;
+        text-align: left;
+    }
+
+    .dropdown .btn, .dropdown button i{
+        margin-top: 4px;
+        float: right;
+    }
+
+    .dropdown .btn:focus{
+        background: none;
+        box-shadow: none;
+    }
+
+    .dropdown .dropdown-menu{
+        padding: 5px 0px;
+        margin: 0px;
+        width: 250px;
+        float: right;
+    }
+
+    .card{
+        border: none !important;
+    }
+
+    .descricao a{
+        text-decoration: none;
+        margin-top: 12px;
+        float: left;
+        font-family: Montserrat SemiBold; 
+        font-size: 16px; 
+        color: black !important; 
+    }
+
+    .descricao a:hover{  
+        color: rgb(80, 80, 80) !important; 
+    }
+
+    .cards{
+        display: none;
+    }
+
+    button.saber-mais{
+        margin-top: 17px;
+        font-family: Montserrat SemiBold;
+        font-size: 12px;
+        float: right !important;
+    }
+
+    button.saber-mais:focus{
+        box-shadow: none;
+    }
+
+    .cards_projetos hr{
+        display: none;
+    }
+
+    .botao_mais .carregarMais{
+        float: right !important;
+        margin-top: 30px;
+        margin-bottom: 35px;
+        font-size: 15px;
+        font-family: Montserrat SemiBold;
+        color: white;
+        background-color: rgb(65, 64, 64);
+    }
+
+    .botao_mais .carregarMais:hover{
+        color: white;
+        background-color: rgb(97, 96, 96);
+    }
+
+    .projetos .cards_projetos > img{
+        width: 50%;
+    }
+
+    .card-title{
+        padding: 0px;
+        margin: 0px;
+        color: black;
+        font-family: Montserrat SemiBold;
+        font-size: 15px;
+    }
+}
+/*Fim Projeto Desktop*/
+
+/*------------------------------------------------------------------*/
+
+/*Experiência*/
+
+/*Experiência Desktop*/
+@media screen and (min-width:1200px) {
+    .libha_mobile{
+        display: none;
+    }
+
+    .experiencia{
+        padding: 0px 240px;
+    }
+
+    .experiencia h4{
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+
+    .experiencia img{
+        width: 100%;
+    }
+
+    .especificacao_cargo h6{
+        font-family: Montserrat SemiBold;
+        font-size: 20px;
+    }
+
+    #texto{
+        font-family: Montserrat;
+        font-size: 15px;
+    }
+
+    #periodo{
+        font-family: Montserrat SemiBold;
+        font-size: 17px;
+        color: rgb(82, 82, 82);
+    }
+
+    .empresa1{
+        margin-bottom: 15px;
+    }
+
+    .empresa2{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .empresa3{
+        margin-top: 15px;
+    }
+
+    .experiencia hr{
+        border: 0;
+        border-top: 1px solid gray;
+        opacity: 0.2;
+    }
+}
+/*Fim Experiência Desktop*/
+
+/*Experiência Tablet*/
+@media screen and (min-width:751px) and (max-width:1199px){
+    .libha_mobile{
+        display: none;
+    }
+
+    .experiencia{
+        padding: 0px 60px;
+    }
+
+    .experiencia h4{
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+
+    .experiencia img{
+        width: 100%;
+    }
+
+    .especificacao_cargo h6{
+        font-family: Montserrat SemiBold;
+        font-size: 17px;
+    }
+
+    #texto{
+        font-family: Montserrat;
+        font-size: 15px;
+    }
+
+    #periodo{
+        font-family: Montserrat SemiBold;
+        font-size: 17px;
+        color: rgb(82, 82, 82);
+    }
+
+    .empresa1{
+        margin-bottom: 15px;
+    }
+
+    .empresa2{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .empresa3{
+        margin-top: 15px;
+    }
+
+    .experiencia hr{
+        border: 0;
+        border-top: 1px solid gray;
+        opacity: 0.2;
+    }
+}
+/*Fim Experiência Tablet*/
+
+/*Experiência Mobile*/
+@media screen and (max-width:750px){
+    main hr{
+        margin: 0px auto 30px;
+        width: 80% !important;
+    }
+
+    .experiencia{
+        margin: 0px auto !important;
+        padding: 0px 20px;
+    }
+
+    .experiencia h4{
+        font-size: 30px;
+        font-family: Montserrat SemiBold;
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    .experiencia img{
+        width: 100%;
+    }
+
+    .especificacao_cargo h6{
+        margin-top: 15px;
+        font-family: Montserrat SemiBold;
+        font-size: 20px;
+    }
+
+    #texto{
+        text-align: justify;
+        font-family: Montserrat;
+        font-size: 17px;
+    }
+
+    #periodo{
+        font-family: Montserrat SemiBold;
+        font-size: 17px;
+        color: rgb(82, 82, 82);
+    }
+
+    .empresa1{
+        margin-bottom: 15px;
+    }
+
+    .empresa2{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .empresa3{
+        margin-top: 15px;
+    }
+
+    hr{
+        border: 0;
+        border-top: 1px solid gray;
+        opacity: 0.2;
+    }
+}
+/*Fim Experiência Mobile*/
+
+/*------------------------------------------------------------------*/
+
+/*Repositórios GitHub*/
+
+/*Repositórios Desktop*/
+@media screen and (min-width:1200px) {
+    .repositorio{
+        padding: 0px 240px;
+        background: rgb(236, 233, 233);
+    }
+
+    .conteudo_repositorio{
+        margin-top: 15px;
+        justify-content: space-between;
+    }
+
+    .conteudo_repositorio h4{
+        padding: 35px 0px;
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+        margin-bottom: 15px;
+    }
+
+    .conteudo_repositorio h4 .quebra_mobile{
+        display: none;
+    }
+
+    .conteudo_repositorio div > img{
+        width: 10%;
+        right: 0px;
+    }
+
+    .info_repositorio a{
+        margin-left: 5px;
+        text-decoration: none;
+        color: black;
+        font-family: Montserrat SemiBold;
+        font-size: 20px;
+    }
+
+    .info_repositorio a:hover{
+        color: black;
+    }
+
+    .conteudo_repositorio > div > .text_repositorio{
+        align-items: center;
+        margin-top: 5px;
+        margin-left: 45px;
+        font-family: Montserrat;
+        font-size: 15px;
+    }
+}
+/*Fim Repositório Desktop*/
+
+/*Repositório Mobile*/
+@media screen and (max-width:1199px) {
+    .repositorio{
+        margin: 0px auto !important;
+        padding: 0px;
+        background: rgb(236, 233, 233);
+    }
+
+    .conteudo_repositorio{
+        margin: 15px 0px 15px;
+        padding: 0px 30px;
+        justify-content: space-between;
+    }
+
+    .conteudo_repositorio h4{
+        padding: 35px 5px;
+        font-size: 30px;
+        font-family: Montserrat SemiBold;
+    }
+
+    .conteudo_repositorio div > img{
+        width: 10%;
+    }
+
+    .info_repositorio{
+        margin: 0px auto 30px;
+    }
+
+    .info_repositorio a{
+        text-decoration: none;
+        color: black;
+        font-family: Montserrat SemiBold;
+        font-size: 20px;
+    }
+
+    .info_repositorio a:focus{
+        color: black;
+    }
+
+    .conteudo_repositorio > div > .text_repositorio{
+        align-items: center;
+        margin-top: 5px;
+        margin-left: 9%;
+        font-family: Montserrat;
+        font-size: 15px;
+    }
+}
+/*Fim Repositório Mobile*/
+
+/*------------------------------------------------------------------*/
+
+/*Recomendação de Conteúdo*/
+
+/*Recomendação Desktop*/
+@media screen and (min-width:1200px) {
+    .recomendacao{
+        padding: 0px 240px;
+        display: inline-block;
+    }
+
+    .recomendacao h4{
+        padding: 35px 0px;
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+        margin-bottom: 20px;
+    }
+
+    div.video{
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 57%;
+    }
+
+    div.video > iframe{
+        position: absolute;
+        top: 5%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #video{
+        font-size: 20px;
+        font-family: Montserrat;
+    }
+
+    #info{
+        font-size: 15px;
+        font-family: Montserrat Light;
+    }
+}
+/*Fim Recomendação Desktop*/
+
+/*Recomendação Notebook*/
+@media screen and (min-width:1000px) and (max-width:1199px){
+    .recomendacao{
+        padding: 0px 30px;
+        display: inline-block;
+    }
+
+    .recomendacao h4{
+        padding: 35px 0px;
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+        margin-bottom: 20px;
+    }
+
+    div.video{
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 57%;
+    }
+
+    div.video > iframe{
+        position: absolute;
+        top: 5%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #video{
+        font-size: 15px;
+        font-family: Montserrat;
+    }
+
+    #info{
+        font-size: 15px;
+        font-family: Montserrat;
+    }
+}
+/*Fim Recomendação Notebook*/
+
+/*Recomendação Mobile*/
+@media screen and (max-width:999px) {
+    .recomendacao{
+        padding: 0px 30px;
+        display: inline-block;
+    }
+
+    .recomendacao h4{
+        padding: 35px 0px;
+        font-size: 35px;
+        font-family: Montserrat SemiBold;
+    }
+
+    div.video{
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 57%;
+    }
+
+    div.video > iframe{
+        position: absolute;
+        top: 5%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #video{
+        font-size: 25px;
+        font-family: Montserrat;
+    }
+
+    #info{
+        font-size: 15px;
+        font-family: Montserrat;
+        margin-top: -15px !important;
+        margin-bottom: 30px;
+    }
+
+    .linha_footer{
+        display: none;
+    }
+}
+/*Fim Recomendação Mobile*/
+
+/*------------------------------------------------------------------*/
+
+/*Footer*/
+
+/*Footer Desktop*/
+@media screen and (min-width:1001px) {
+    .footer{
+        height: 90px;
+        padding: 40px 120px;
+        background-color: rgb(236, 233, 233);
+    }
+
+    .copyright{
+        font-family: Montserrat Light;
+        font-size: 15px;
+    }
+
+    .redes-mobile{
+        display: none;
+    }
+
+    .footer-mobile{
+        display: none;
+    }
+
+    div.logo img{
+        margin-top: -5px;
+        width: 30px;
+    }
+}
+/*Fim Footer Desktop*/
+
+/*Footer Tablet*/
+@media screen and (min-width:780px) and (max-width:1000px){
+    .footer{
+        height: 80px;
+        padding: 40px 20px;
+        background-color: rgb(236, 233, 233);
+    }
+
+    .copyright{
+        font-family: Montserrat Light;
+        font-size: 15px;
+    }
+
+    .redes-mobile{
+        display: none;
+    }
+
+    .footer-mobile{
+        display: none;
+    }
+
+    div.logo img{
+        margin-top: 10px;
+        width: 30%;
+    }
+}
+/*Fim Footer Tablet*/
+
+/*Footer Mobile*/
+@media screen and (max-width:779px) {
+    .footer{
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 20px !important;
+        padding: 0px 20px;
+        margin: 0px auto !important;
+        background-color: rgb(236, 233, 233);
+    }
+
+    .copyright{
+        font-family: Montserrat Light;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .logo{
+        display: none;
+    }
+}
+/*Fim Footer Mobile*/

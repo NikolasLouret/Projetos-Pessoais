@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/icon.svg">
+
+    <title>Suporte</title>
+
+    <link rel="icon" href="./img/icon.svg">
+    <link rel="stylesheet" href="pagina-inicial.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/c89ded80b6.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script>
+        function validacaoForm() {
+            var asterisco;
+
+            $("#botao_enviar").click(function() {
+                // Verfica se o formulário está preenchido corretamente
+                if (!$('#form_fale_conosco')[0].checkValidity()) {
+                    return
+                }
+
+                document.location.reload()
+            })
+
+            //Verificar os campos do formulário das perguntas individualmente
+            const fields = document.querySelectorAll("[required]")
+
+            function validateField(field) {
+                //Lógica para verificar se existem erros
+                function verifyErrors() {
+                    let foundError = false;
+
+                    for (key in field.validity) {
+                        if (field.validity[key] && !field.validity.valid) {
+                            foundError = key
+                        }
+                    };
+                    return foundError
+                }
+
+                function setCustomMessage(message) {
+                    if (message) {
+                        $(field).attr('placeholder', field.placeholder + message)
+                    }
+                }
+
+                return function() {
+                    if (verifyErrors()) {
+                        field.style.border = "1px solid red"
+
+                        if (!asterisco) {
+                            setCustomMessage("*")
+                            asterisco = true;
+                        }
+                    } else {
+                        field.style.border = "1px solid rgb(0, 201, 0)"
+                        setCustomMessage()
+                    }
+                }
+            }
+
+            function customValidation(event) {
+                const field = event.target
+                const validation = validateField(field)
+                if (field.placeholder == "Primeiro nome" || field.placeholder == "Último nome" || field.placeholder == "Endereço de email" || field.placeholder == "Descreva o problema")
+                    asterisco = false;
+                else asterisco = true
+                validation()
+            }
+
+            for (field of fields) {
+                field.addEventListener("invalid", event => {
+                    //Tirar o bubble
+                    event.preventDefault()
+
+                    customValidation(event)
+                })
+
+                field.addEventListener("blur", customValidation)
+            }
+        }
+
+        function filtroPerguntas() {
+            const inputSearch = document.querySelector('#barra-pesquisa input')
+            const filterInput = document.querySelector("#search")
+            const filterList = document.querySelector('#historico')
+            const cleanButton = document.querySelector("#cleanButton")
+            const searchButton = document.querySelector("#searchButton")
+            const posts = document.querySelectorAll("#conteudo_discussao li")
+
+            const filterResults = (results, inputValue, returnMatchedResults) => results
+                .filter(result => {
+                    const matchedResults = result.textContent.toLowerCase().includes(inputValue)
+                    return returnMatchedResults ? matchedResults : !matchedResults
+                })
+
+            const hideResults = (results, inputValue) => {
+                filterResults(results, inputValue, false)
+                    .forEach(result => {
+                        result.classList.remove('block')
+                        result.classList.add('hidden')
+                    })
+            }
+
+            const showResults = (results, inputValue) => {
+                filterResults(results, inputValue, true)
+                    .forEach(result => {
+                        result.classList.remove('hidden')
+                        result.classList.add('block')
+                    })
+            }
+
+            const showPostIfMatchInputValue = inputValue => post => {
+                const postTitle = post.querySelector('#tituloPergunta').textContent.toLocaleLowerCase()
+                const postBody1 = post.querySelector('#p1-pergunta').textContent.toLocaleLowerCase()
+                const postBody2 = post.querySelector('#p2-pergunta').textContent.toLocaleLowerCase()
+                const postContainsInputValue = postTitle.includes(inputValue) ||
+                    postBody1.includes(inputValue) ||
+                    postBody2.includes(inputValue)
+
+                if (postContainsInputValue) {
+                    post.style.display = 'block'
+                    return
+                }
+
+                post.style.display = 'none'
+            }
+
+            const cleanInput = event => {
+                inputSearch.value = ""
+
+                posts.forEach(post => {
+                    post.style.display = 'block'
+                })
+
+                switchSearchIcon()
+            }
+
+            function switchSearchIcon() {
+                if (inputSearch.value.length > 0) {
+                    searchButton.classList.remove("block");
+                    searchButton.classList.add("hidden");
+
+                    cleanButton.classList.remove("hidden");
+                    cleanButton.classList.add("block");
+                } else {
+                    searchButton.classList.remove("hidden");
+                    searchButton.classList.add("block");
+
+                    cleanButton.classList.remove("block");
+                    cleanButton.classList.add("hidden");
+                }
+            }
+
+            const handleInputValue = event => {
+                const inputValue = event.target.value.trim().toLowerCase()
+                const results = Array.from(filterList.children)
+
+
+                posts.forEach(showPostIfMatchInputValue(inputValue))
+
+                hideResults(results, inputValue)
+                showResults(results, inputValue)
+
+                switchSearchIcon()
+            }
+
+            filterList.addEventListener('click', event => {
+                const posts = document.querySelectorAll("#conteudo_discussao li")
+                const inputValue = event.target.textContent.toLocaleLowerCase()
+
+                posts.forEach(showPostIfMatchInputValue(inputValue))
+
+                filterInput.value = event.target.textContent
+            })
+
+            inputSearch.addEventListener('input', handleInputValue)
+
+            inputSearch.addEventListener('blur', switchSearchIcon())
+
+            cleanButton.addEventListener('click', cleanInput)
+        }
+        const btnMobile = document.getElementById('btn-mobile')
+
+        function toggleMenu() {
+            const nav = document.getElementById("nav")
+
+            nav.classList.toggle('active')
+        }
+
+        function init() {
+
+            //Calcula o ano
+            document.querySelector('#ano').innerHTML = new Date().getFullYear()
+
+            //Limpa todas as informações do Data Base
+            $("#conteudo_discussao").html("");
+
+            // Popula a lista com os registros do banco de dados
+            for (i = 0; i < db.data.length; i++) {
+                let discus = db.data[i];
+                $("#conteudo_discussao").append(`<li display="block" class="perguntaLinha" data-bs-target="#modal-pergunta" data-bs-toggle="modal" id="${discus.id}">
+                                                <h5 id="tituloPergunta">${discus.titulo_pergunta}</h5>           
+                                                <p id="p1-pergunta">${discus.nickname}</p>
+                                                <p id="p2-pergunta">${discus.texto}</p>
+                                                <hr>
+                                            </li>`);
+                $("#historico").append(`<option id="historicoPesquisa">${discus.titulo_pergunta}</option>`)
+            }
+
+            // Identifica qual pergunta clickada 
+            $("#conteudo_discussao").on("click", "li", function(e) {
+                let linhaPergunta = this;
+                gerarModal(linhaPergunta, linhaPergunta.id)
+            });
+
+            const filterSearch = document.querySelector('#historico')
+            const inputSearch = document.querySelector('#barra-pesquisa input')
+
+            function resolveAfterXs(x) {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve(x);
+                    }, 100);
+                });
+            }
+
+            const hideResults = async event => {
+                await resolveAfterXs(1);
+                const results = Array.from(filterSearch.children).forEach(result => {
+                    result.classList.remove('block')
+                    result.classList.add('hidden')
+                })
+            }
+
+            const showResults = event => {
+                const results = Array.from(filterSearch.children).forEach(result => {
+                    result.classList.remove('hidden')
+                    result.classList.add('block')
+                })
+            }
+
+            inputSearch.addEventListener('click', showResults)
+            inputSearch.addEventListener('blur', hideResults)
+        }
+    </script>
+</head>
+
+<body id="body" onload="init(), validacaoForm()">
+    <header class="cabecalho" id="header">
+        <a id="logo" href="#">
+            <img src="svg/Logo-Klug-2-branco.svg" id="logo-rodape" alt="Logo">
+            <span id="nomelogo">KLUG </span>
+            <span id="localpagina">| Suporte</span>
+        </a>
+        <nav id="nav">
+            <button onclick="toggleMenu()" id="btn-mobile" aria-controls="menu" aria-haspopup="true" aria-label="Abrir Menu"><span id="hamburguer"></span></button></var>
+            <ul id="menu" role="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Editar rota</a></li>
+                <li>
+                    <a href="#">Entrar</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="row suport">
+            <div class="container background-globe">
+                <h1 id="titulo">Suporte KLUG</h1>
+                <div class="pesquisa">
+                    <form id="barra-pesquisa" class="d-flex" action="" method="submit">
+                        <input onclick="filtroPerguntas()" type="text" class="form-control" name="search" id="search" placeholder="Pesquisar" aria-label="Search" list="historico">
+
+                        <button id="searchButton" class="block"><i id="icon_search" class="fas fa-search"></i></button>
+                        <button type="button" id="cleanButton" class="hidden"><i id="icon_clean" class="fas fa-times"></i></button>
+
+                        <datalist id="historico"></datalist>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row principais-problemas">
+            <div class="container">
+                <div class="texto-problemas">
+                    <a href="perguntas.html">Mapa incorreto?</a>
+                    <div id="lv"></div>
+                    <hr id="linha-mobile">
+                    <a href="perguntas.html">Rota mal planejada?</a>
+                    <div id="lv"></div>
+                    <hr id="linha-mobile">
+                    <a id="duas-linhas" href="perguntas.html">Edição da rota não está <br>funcionando?</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row link-editor">
+                <div class="col-12 col-sm-5 col-md-5 col-lg-5 icone-editar">
+                    <img src="img/Pencil.png" alt="editar rota">
+                </div>
+                <div class="col-12 col-sm-7 col-md-7 col-lg-7 conteudo-editar">
+                    <h4><b>Alguma coisa errada <br>com a rota?</b></h4>
+                    <p id="texto-editar">
+                        Com o editor de rotas é possível <br> editar as rotas antes de iniciá-las, <br> além de inserir áreas não desejadas, <br> perigosas e avisos no mapa
+                    </p>
+                    <p id="link-para-editar"><a href="#">Editar minha rota <i id="seta" class="fas fa-arrow-right"></i></a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row sobre-klug">
+            <div class="conteudo-sobre">
+                <div class="backgroung-sobre"></div>
+                <div class="texto-sobre-klug">
+                    <h4><span class="localpagina">Sobre</span><span id="nome-klug"> <b>KLUG</b></span></h4>
+                    <p id="p1" class="texto-sobre">
+                        <span id="nome-klug"><b>Klug </b></span> é um projeto que calcula as melhores rotas de GPS baseados nas áreas indesejadas aparentes no mapa criadas pelo usuário e na personalização do tipo de rota escolhida pelo usuário.</p>
+                    <p id="p2">O <b>App/Web</b> permite que o usuário edite a rota de acordo com as necessidades no momento e <b>crie avisos</b> que serão aparentes no mapa. Dessa forma, cria-se mais adaptabilidade para as rotas a fim de alcançar maior conforto
+                        e melhor exeperiência para o usuário.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row fale-conosco">
+            <div class="container">
+                <div class="conteudo-fale-conosco">
+                    <h4 class="titulo-fale-conosco"><span id="subtitulo-fale-conosco">Encontrou algum erro?</span><br><span id="titulo-fale-conosco">FALE CONOSCO</span></h4>
+                </div>
+                <div class="container formulario-fale-conosco">
+                    <form id="form_fale_conosco" action="https://postman-echo.com/post" method="post">
+                        <div id="primeiro_nome-form" class="for_erro">
+                            <label for="primeiro_nome"></label>
+                            <input type="text" class="form-control" id="primeiro_nome" placeholder="Primeiro nome" autocomplete="off" required>
+                        </div>
+
+                        <div id="ultimo_nome-form" class="form_erro">
+                            <label for="ultimo_nome"></label>
+                            <input type="text" class="form-control" id="ultimo_nome" placeholder="Último nome" autocomplete="off" required>
+                        </div>
+
+                        <div id="email-form" class="form_erro">
+                            <label for="email"></label>
+                            <input type="email" class="form-control" id="email" placeholder="Endereço de email" autocomplete="off" required>
+                        </div>
+
+                        <div id="problema-form" class="form_erro">
+                            <label for="problema"></label>
+                            <textarea class="form-control" id="problema" placeholder="Descreva o problema" rows="3" autocomplete="off" required></textarea>
+                        </div>
+                    </form>
+                    <span id="instrucao"></span>
+
+                    <div class="anexar-arquivo">
+                        <label id="anexar" for="paperclip">Anexar arquivo <span type="file"><i class="fas fa-paperclip"></i></span></label>
+                        <input type="file" id="paperclip" multiple>
+                    </div>
+
+                    <button type="submit" id="botao_enviar" class="btn btn-default">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="principais-topicos">
+                <h4 class="titulo-rodape"><b>Principais tópicos de ajuda</b></h4>
+
+                <div class="editar-rotas">
+                    <button id="botao-principais-topicos" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#edicao-rotas" aria-expanded="false" aria-controls="edicao-rotas">
+                        Edição de rotas <span id="icone-dropdonw"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <div class="collapse" id="edicao-rotas">
+                        <div id="texto-expansivo" class="card card-body">
+                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="personalizar-rotas">
+                    <button id="botao-principais-topicos" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#personalizacao-rotas" aria-expanded="false" aria-controls="personalizacao-rotas">
+                            Personalizacao de rotas <span id="icone-dropdonw"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <div class="collapse" id="personalizacao-rotas">
+                        <div id="texto-expansivo" class="card card-body">
+                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explorar-o-mapa">
+                    <button id="botao-principais-topicos" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#explorar-mapa" aria-expanded="false" aria-controls="explorar-mapa">
+                            Explorar o mapa <span id="icone-dropdonw"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <div class="collapse" id="explorar-mapa">
+                        <div id="texto-expansivo" class="card card-body">
+                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="final-footer">
+            <div class="logo-redes">
+                <div class="logo-footer">
+                    <a href="#">
+                        <img src="svg/Logo-Klug-1-cinza.svg" id="logo-rodape" alt="Logo">
+                        <i class="fas fa-chevron-right"></i>
+                        <span id="indicador-pagina-rodape">Suporte</span>
+                    </a>
+                </div>
+                <div class="redes-footer">
+                    <span id="siga-nos">Siga-nos</span>
+                    <a class="facebook" href="https://web.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                    <a class="twitter" href="https://twitter.com/home" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a class="instagram" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <hr id="linha-footer">
+
+            <div class="copyright">
+                <div class="copyright-texto">
+                    <h5><b>Copyright&copy <span id="ano"></span> Klug </b>| Todos os direitos reservados</h5>
+                </div>
+                <div class="pais">
+                    <h5>Brasil</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+
+</html>
